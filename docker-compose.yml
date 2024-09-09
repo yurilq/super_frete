@@ -1,0 +1,12 @@
+version: '3'
+services:
+  airflow:
+    image: apache/airflow:2.3.3
+    container_name: airflow_superfrete
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    volumes:
+      - ./dags:/opt/airflow/dags
+    ports:
+      - "8080:8080"
+    command: bash -c "airflow db upgrade && airflow webserver"
